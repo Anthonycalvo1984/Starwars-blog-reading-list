@@ -1,12 +1,19 @@
+image:
+  file: .gitpod.Dockerfile
 ports:
-    - port: 3000
-      onOpen: open-browser
+  - port: 3000
+    onOpen: open-browser
+    visibility: public
+  - port: 3001
+    onOpen: open-preview
+    visibility: public
+  - port: 5432
+    onOpen: ignore
 tasks:
-    - init: >
-        npm install &&
-        cp .env.example .env
-      command: >
-        python docs/assets/greeting.py
+  - before: nvm install 16.15.0
+  - init: npm install
+
+    openMode: split-right
 
 vscode:
   extensions:
